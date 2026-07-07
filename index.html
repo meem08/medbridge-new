@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MedBridge - Connecting Blood Donors & Hospitals</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- ==================== SPLASH SCREEN ==================== -->
+    <div id="screen-splash" class="screen active">
+      <div class="splash-content">
+        <div class="splash-logo">
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <circle cx="40" cy="40" r="38" fill="white" fill-opacity="0.15"/>
+            <path d="M40 20C40 20 22 38 22 48C22 57.94 27.96 62 40 62C52.04 62 58 57.94 58 48C58 38 40 20 40 20Z" fill="white"/>
+            <path d="M34 44H46M40 38V50" stroke="#C00000" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="36" y="30" width="8" height="8" rx="4" fill="white" fill-opacity="0.3"/>
+          </svg>
+        </div>
+        <h1 class="splash-title">MedBridge</h1>
+        <p class="splash-tagline">Bridging Lives, Saving Futures</p>
+      </div>
+    </div>
+
+    <!-- ==================== ONBOARDING ==================== -->
+    <div id="screen-onboarding" class="screen">
+      <div class="onboarding-container">
+        <div class="onboarding-slides">
+          <div class="onboarding-slide active">
+            <div class="onboarding-illustration">
+              <svg width="280" height="240" viewBox="0 0 280 240" fill="none">
+                <circle cx="140" cy="120" r="100" fill="#F5F0F0"/>
+                <circle cx="140" cy="110" r="50" fill="#E8D5D5"/>
+                <circle cx="140" cy="110" r="25" fill="#C00000" fill-opacity="0.15"/>
+                <path d="M130 105H150M140 95V115" stroke="#C00000" stroke-width="3" stroke-linecap="round"/>
+                <path d="M70 170C70 170 90 155 110 165C130 175 145 160 160 165C175 170 190 158 210 168" stroke="#D0D0D0" stroke-width="2" fill="none"/>
+                <path d="M60 185C60 185 85 172 110 182C135 192 150 178 170 183C190 188 205 176 225 186" stroke="#D0D0D0" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <h2>Every Drop.<br>Every Donor. Every Life.</h2>
+            <p>Optimizing Critical Blood Supplies With Precision AI And Secure Coordination.</p>
+          </div>
+          <div class="onboarding-slide">
+            <div class="onboarding-illustration">
+              <svg width="280" height="240" viewBox="0 0 280 240" fill="none">
+                <circle cx="140" cy="120" r="100" fill="#F5F0F0"/>
+                <rect x="90" y="75" width="100" height="70" rx="10" fill="#E8D5D5"/>
+                <rect x="105" y="85" width="70" height="8" rx="4" fill="#D0B0B0"/>
+                <rect x="105" y="100" width="50" height="6" rx="3" fill="#D0B0B0"/>
+                <rect x="105" y="113" width="60" height="6" rx="3" fill="#D0B0B0"/>
+                <circle cx="140" cy="110" r="20" fill="#C00000" fill-opacity="0.12"/>
+                <path d="M134 106H146M140 100V112" stroke="#C00000" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h2>Every donation<br>can save a life.</h2>
+            <p>Join In Helping Hospitals And Patients Access Life-Saving Blood When It Matters Most.</p>
+          </div>
+          <div class="onboarding-slide">
+            <div class="onboarding-illustration">
+              <svg width="280" height="240" viewBox="0 0 280 240" fill="none">
+                <circle cx="140" cy="120" r="100" fill="#F5F0F0"/>
+                <path d="M100 130L120 110L140 125L160 105L180 130" stroke="#C00000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <circle cx="120" cy="110" r="8" fill="#C00000" fill-opacity="0.2"/>
+                <circle cx="160" cy="105" r="8" fill="#C00000" fill-opacity="0.2"/>
+                <rect x="95" y="145" width="90" height="50" rx="8" fill="#E8D5D5"/>
+                <rect x="105" y="153" width="70" height="6" rx="3" fill="#D0B0B0"/>
+                <rect x="105" y="165" width="55" height="6" rx="3" fill="#D0B0B0"/>
+                <rect x="105" y="177" width="40" height="6" rx="3" fill="#D0B0B0"/>
+              </svg>
+            </div>
+            <h2>Come donate<br>with confidence.</h2>
+            <p>Book Appointments, Receive Requests, Track Impact, And Save Lives From Your Phone.</p>
+          </div>
+        </div>
+        <div class="onboarding-dots">
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+          <span class="dot" data-index="2"></span>
+        </div>
+        <button class="btn btn-primary onboarding-btn" onclick="App.nextOnboarding()">Next</button>
+        <a href="#" class="onboarding-skip" onclick="App.goTo('role')">Already Have An Account? Log In</a>
+      </div>
+    </div>
+
+    <!-- ==================== ROLE SELECTION ==================== -->
+    <div id="screen-role" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.goTo('onboarding')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="role-content">
+        <h2>How will you use<br>MedBridge</h2>
+        <p class="role-subtitle">Select the role that best describes your primary activity in the ecosystem.</p>
+        <div class="role-cards">
+          <div class="role-card" onclick="App.selectRole('donor')" data-role="donor">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="22" fill="#C00000" fill-opacity="0.08"/>
+              <circle cx="24" cy="18" r="6" fill="#C00000" fill-opacity="0.2"/>
+              <path d="M14 34C14 28.48 18.48 24 24 24C29.52 24 34 28.48 34 34" stroke="#C00000" stroke-width="2" stroke-linecap="round"/>
+              <path d="M28 12L32 8L36 12" stroke="#C00000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3>Blood Donor</h3>
+            <p>Helping save lives through blood donation.</p>
+          </div>
+          <div class="role-card" onclick="App.selectRole('hospital')" data-role="hospital">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <rect x="14" y="8" width="20" height="32" rx="3" fill="#C00000" fill-opacity="0.08"/>
+              <rect x="14" y="8" width="20" height="32" rx="3" stroke="#C00000" stroke-width="1.5"/>
+              <rect x="18" y="12" width="12" height="4" rx="1" fill="#C00000" fill-opacity="0.15"/>
+              <rect x="18" y="20" width="12" height="2" rx="1" fill="#C00000" fill-opacity="0.15"/>
+              <rect x="22" y="26" width="4" height="10" rx="1" fill="#C00000" fill-opacity="0.2"/>
+            </svg>
+            <h3>Hospital</h3>
+            <p>Request and track emergency blood.</p>
+          </div>
+          <div class="role-card" onclick="App.selectRole('bloodbank')" data-role="bloodbank">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="22" fill="#C00000" fill-opacity="0.08"/>
+              <circle cx="24" cy="26" r="12" fill="#C00000" fill-opacity="0.12"/>
+              <path d="M24 18V34M16 26H32" stroke="#C00000" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <h3>Blood Bank</h3>
+            <p>Manage blood inventory and donations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== DONOR SIGN UP ==================== -->
+    <div id="screen-donor-signup" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.goTo('role')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="auth-form">
+        <h2>Create your account</h2>
+        <p>Join thousands of blood donors making emergency blood access faster.</p>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Enter your full name" id="donor-name">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="Enter your email" id="donor-email">
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="Enter your phone number" id="donor-phone">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="Create a password" id="donor-password">
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input type="password" placeholder="Confirm your password" id="donor-confirm">
+        </div>
+        <label class="checkbox-label">
+          <input type="checkbox"> <span>I Agree To The Clinical Terms Of Service And Privacy Protocol.</span>
+        </label>
+        <button class="btn btn-primary" onclick="App.signUp('donor')">Sign Up</button>
+        <div class="divider"><span>Or Continue With</span></div>
+        <button class="btn btn-social"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="#C00000" fill-opacity="0.1"/><text x="10" y="14" text-anchor="middle" fill="#C00000" font-size="11" font-weight="bold">G</text></svg> Continue with Google</button>
+        <p class="auth-switch">Already Have An Account? <a href="#" onclick="App.goTo('donor-login')">Log In</a></p>
+      </div>
+    </div>
+
+    <!-- ==================== DONOR LOGIN ==================== -->
+    <div id="screen-donor-login" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.goTo('role')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="auth-form">
+        <h2>Welcome Back</h2>
+        <p>Sign in to continue saving lives.</p>
+        <div class="form-group">
+          <label>Email or Phone Number</label>
+          <input type="text" placeholder="Enter email or phone" id="login-email">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="Enter your password" id="login-password">
+        </div>
+        <a href="#" class="forgot-link" onclick="App.goTo('forgot-password')">Forget Password</a>
+        <button class="btn btn-primary" onclick="App.login('donor')">Sign In</button>
+        <button class="btn btn-social"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="#C00000" fill-opacity="0.1"/><text x="10" y="14" text-anchor="middle" fill="#C00000" font-size="11" font-weight="bold">G</text></svg> Continue with Google</button>
+        <p class="auth-switch">Don't Have An Account? <a href="#" onclick="App.goTo('donor-signup')">Create Account</a></p>
+      </div>
+    </div>
+
+    <!-- ==================== FORGOT PASSWORD ==================== -->
+    <div id="screen-forgot-password" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="history.back()"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="auth-form">
+        <h2>Forgot Password</h2>
+        <p>Enter email or Phone number registered to account to continue.</p>
+        <div class="form-group">
+          <label>Email or Phone Number</label>
+          <input type="text" placeholder="Enter email or phone" id="forgot-input">
+        </div>
+        <button class="btn btn-primary" onclick="App.goTo('email-verification')">Send Code</button>
+      </div>
+    </div>
+
+    <!-- ==================== EMAIL VERIFICATION ==================== -->
+    <div id="screen-email-verification" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="history.back()"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="auth-form verification-form">
+        <h2>Enter Your Verification Code</h2>
+        <p>Enter The 4-digit code sent to your email or phone number.</p>
+        <div class="code-inputs">
+          <input type="text" class="code-box" maxlength="1" oninput="App.moveCodeInput(this, event)" autofocus>
+          <input type="text" class="code-box" maxlength="1" oninput="App.moveCodeInput(this, event)">
+          <input type="text" class="code-box" maxlength="1" oninput="App.moveCodeInput(this, event)">
+          <input type="text" class="code-box" maxlength="1" oninput="App.moveCodeInput(this, event)">
+        </div>
+        <p class="resend-code">Resend Code in <span id="resend-timer">20 Sec</span></p>
+        <div class="custom-keypad">
+          <div class="keypad-row">
+            <button class="keypad-btn" onclick="App.appendCode('1')">1<br><small>ABC</small></button>
+            <button class="keypad-btn" onclick="App.appendCode('2')">2<br><small>DEF</small></button>
+            <button class="keypad-btn" onclick="App.appendCode('3')">3<br><small>GHI</small></button>
+          </div>
+          <div class="keypad-row">
+            <button class="keypad-btn" onclick="App.appendCode('4')">4<br><small>JKL</small></button>
+            <button class="keypad-btn" onclick="App.appendCode('5')">5<br><small>MNO</small></button>
+            <button class="keypad-btn" onclick="App.appendCode('6')">6<br><small>PQRS</small></button>
+          </div>
+          <div class="keypad-row">
+            <button class="keypad-btn" onclick="App.appendCode('7')">7<br><small>TUV</small></button>
+            <button class="keypad-btn" onclick="App.appendCode('8')">8<br><small>WXYZ</small></button>
+            <button class="keypad-btn" onclick="App.appendCode('9')">9</button>
+          </div>
+          <div class="keypad-row">
+            <button class="keypad-btn keypad-empty"></button>
+            <button class="keypad-btn" onclick="App.appendCode('0')">0</button>
+            <button class="keypad-btn" onclick="App.deleteCode()"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 6H6L3 12L6 18H19C20.1 18 21 17.1 21 16V8C21 6.9 20.1 6 19 6Z" stroke="#666" stroke-width="1.5"/><path d="M10 9L14 15M14 9L10 15" stroke="#666" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== RESET PASSWORD ==================== -->
+    <div id="screen-reset-password" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="history.back()"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="auth-form">
+        <h2>Reset Your Password</h2>
+        <p>Create a new password for your account. Make sure it's strong and easy for you to remember.</p>
+        <div class="form-group">
+          <label>Create New Password</label>
+          <input type="password" placeholder="Enter new password">
+        </div>
+        <div class="form-group">
+          <label>Confirm New Password</label>
+          <input type="password" placeholder="Confirm new password">
+        </div>
+        <button class="btn btn-primary" onclick="App.goTo('donor-login')">Reset Password</button>
+      </div>
+    </div>
+
+    <!-- ==================== DONOR DASHBOARD ==================== -->
+    <div id="screen-donor-dashboard" class="screen">
+      <div class="dashboard">
+        <div class="dash-header">
+          <div>
+            <h2>Hello, Ada</h2>
+            <p>Thank you for being part of a life saving community.</p>
+          </div>
+          <div class="dash-avatar">A</div>
+        </div>
+        <div class="urgent-banner">
+          <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="white" fill-opacity="0.3"/><path d="M8 4V9M8 11V11.01" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          URGENT REQUEST — Hospital A needs O- Blood
+        </div>
+        <div class="blood-card">
+          <div class="blood-type-badge">O+</div>
+          <div class="blood-info">
+            <h3>Common donor, universally compatible for all positive types</h3>
+            <div class="eligibility"><span class="elig-yes">ELIGIBILITY — YES</span> Ready To Donate</div>
+            <span class="elig-date">Today — Eligibility Active</span>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-box"><strong>14</strong> Lives Saved</div>
+          <div class="stat-box"><strong>6</strong> Donations</div>
+        </div>
+        <div class="section">
+          <h3>Achievements</h3>
+          <p>Track your impact and manage your certificates.</p>
+          <div class="badges">
+            <span class="badge">First Donation 2021</span>
+            <span class="badge">5-Life Saver Unlocked 2021</span>
+          </div>
+        </div>
+        <div class="section">
+          <h3>Donation History</h3>
+          <div class="history-item">
+            <div class="history-date">March 14, 2024</div>
+            <div class="history-detail">Whole blood donation for emergency trauma reserve.</div>
+            <span class="cert-badge">Certificate Available</span>
+          </div>
+          <div class="history-item">
+            <div class="history-date">January 02, 2024</div>
+            <div class="history-detail">Routine quarterly donation.</div>
+            <span class="cert-badge">Certificate Available</span>
+          </div>
+          <div class="history-item">
+            <div class="history-date">October 18, 2023</div>
+            <div class="history-detail">Critical supply response during multi-casualty event.</div>
+            <span class="cert-badge">Certificate Available</span>
+          </div>
+          <a href="#" class="show-more">Show older history</a>
+        </div>
+        <button class="btn btn-primary quick-action" onclick="App.goTo('donor-appointment')">Book Donation &gt;</button>
+      </div>
+      <nav class="bottom-nav">
+        <a href="#" class="nav-item active" data-screen="donor-dashboard"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 10L10 2L18 10" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="4" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/><rect x="12" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/></svg><span>Home</span></a>
+        <a href="#" class="nav-item" data-screen="donor-notifications"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 2C7.24 2 5 4.24 5 7V11L3 14H17L15 11V7C15 4.24 12.76 2 10 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="10" cy="17" r="2" fill="currentColor" opacity="0.3"/></svg><span>Emergency</span></a>
+        <a href="#" class="nav-item" data-screen="donor-notifications"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 2C7.24 2 5 4.24 5 7V11L3 14H17L15 11V7C15 4.24 12.76 2 10 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="10" cy="17" r="2" fill="currentColor" opacity="0.3"/></svg><span>Alerts</span></a>
+        <a href="#" class="nav-item"><svg width="20" height="20" viewBox="0 0 20 20"><polygon points="10,2 12,7 18,7 13,11 15,17 10,13 5,17 7,11 2,7 8,7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg><span>Rewards</span></a>
+        <a href="#" class="nav-item"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="6" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M3 18C3 13.58 6.14 10 10 10C13.86 10 17 13.58 17 18" stroke="currentColor" stroke-width="1.5" fill="none"/></svg><span>Profile</span></a>
+      </nav>
+    </div>
+
+    <!-- ==================== DONOR APPOINTMENT ==================== -->
+    <div id="screen-donor-appointment" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.goTo('donor-dashboard')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <h2>Blood Bank</h2>
+      </div>
+      <div class="appointment-content">
+        <div class="search-bar">
+          <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="7" cy="7" r="5" stroke="#999" stroke-width="1.5" fill="none"/><path d="M11 11L14 14" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="Search Blood Bank">
+        </div>
+        <div class="blood-bank-list">
+          <div class="bank-item"><strong>Pulse Africa</strong> — Lagos</div>
+          <div class="bank-item"><strong>BloodBridge</strong> — Abuja</div>
+          <div class="bank-item"><strong>LifeFlow Africa</strong> — Port Harcourt</div>
+          <div class="bank-item"><strong>RedHope Blood Bank</strong> — Kano</div>
+          <div class="bank-item"><strong>One Blood Africa</strong> — Enugu</div>
+        </div>
+        <div class="calendar-widget">
+          <div class="cal-header">December 2024</div>
+          <div class="cal-days">
+            <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+          </div>
+          <div class="cal-dates">
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+            <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+            <span>15</span><span>16</span><span>17</span><span class="selected">18</span><span>19</span><span>20</span><span>21</span>
+            <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+            <span>29</span><span>30</span><span>31</span>
+          </div>
+        </div>
+        <div class="slots-section">
+          <h3>Available Slots</h3>
+          <div class="slots">
+            <span class="slot">08:30 AM</span>
+            <span class="slot">09:30 AM</span>
+            <span class="slot">11:30 AM</span>
+            <span class="slot">13:30 PM</span>
+            <span class="slot selected">14:30 PM</span>
+            <span class="slot">15:30 PM</span>
+          </div>
+        </div>
+      </div>
+      <button class="chat-fab" onclick="App.showToast('Chat Bot: How can I help you?')">
+        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" fill="white" opacity="0.9"/><path d="M8 9H16M8 13H13M8 17H11" stroke="#C00000" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <nav class="bottom-nav">
+        <a href="#" class="nav-item" data-screen="donor-dashboard"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 10L10 2L18 10" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="4" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/><rect x="12" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/></svg><span>Home</span></a>
+        <a href="#" class="nav-item"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 2C7.24 2 5 4.24 5 7V11L3 14H17L15 11V7C15 4.24 12.76 2 10 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="10" cy="17" r="2" fill="currentColor" opacity="0.3"/></svg><span>Emergency</span></a>
+        <a href="#" class="nav-item" data-screen="donor-notifications"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 2C7.24 2 5 4.24 5 7V11L3 14H17L15 11V7C15 4.24 12.76 2 10 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="10" cy="17" r="2" fill="currentColor" opacity="0.3"/></svg><span>Alerts</span></a>
+        <a href="#" class="nav-item"><svg width="20" height="20" viewBox="0 0 20 20"><polygon points="10,2 12,7 18,7 13,11 15,17 10,13 5,17 7,11 2,7 8,7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg><span>Rewards</span></a>
+        <a href="#" class="nav-item"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="6" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M3 18C3 13.58 6.14 10 10 10C13.86 10 17 13.58 17 18" stroke="currentColor" stroke-width="1.5" fill="none"/></svg><span>Profile</span></a>
+      </nav>
+    </div>
+
+    <!-- ==================== DONOR NOTIFICATIONS ==================== -->
+    <div id="screen-donor-notifications" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.goTo('donor-dashboard')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <h2>Notifications</h2>
+        <a href="#" class="mark-read">Mark all as read</a>
+      </div>
+      <div class="notif-tabs">
+        <span class="notif-tab active">All</span>
+        <span class="notif-tab">CRITICAL</span>
+        <span class="notif-tab">ALERTS</span>
+        <span class="notif-tab">NEARBY</span>
+        <span class="notif-tab">EMERGENCY</span>
+      </div>
+      <div class="notif-list">
+        <div class="notif-card emergency">
+          <div class="notif-badge critical">CRITICAL</div>
+          <h4>O- Required</h4>
+          <p>City General Hospital</p>
+          <div class="notif-meta">
+            <span>0.5km away</span>
+            <span>ETA 12 mins</span>
+            <span class="ai-match">98% AI MATCH</span>
+          </div>
+        </div>
+        <div class="notif-card emergency">
+          <div class="notif-badge urgent">URGENT</div>
+          <h4>AB+ Required</h4>
+          <p>St. Jude Medical Center</p>
+          <div class="notif-meta">
+            <span>7.6km away</span>
+            <span>ETA 18 mins</span>
+            <span class="ai-match">98% AI MATCH</span>
+          </div>
+        </div>
+      </div>
+      <button class="chat-fab" onclick="App.showToast('Chat Bot: How can I help you?')">
+        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" fill="white" opacity="0.9"/><path d="M8 9H16M8 13H13M8 17H11" stroke="#C00000" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <nav class="bottom-nav">
+        <a href="#" class="nav-item" data-screen="donor-dashboard"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 10L10 2L18 10" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="4" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/><rect x="12" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/></svg><span>Home</span></a>
+        <a href="#" class="nav-item active"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 2C7.24 2 5 4.24 5 7V11L3 14H17L15 11V7C15 4.24 12.76 2 10 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="10" cy="17" r="2" fill="currentColor" opacity="0.3"/></svg><span>Alerts</span></a>
+        <a href="#" class="nav-item"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 2C7.24 2 5 4.24 5 7V11L3 14H17L15 11V7C15 4.24 12.76 2 10 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="10" cy="17" r="2" fill="currentColor" opacity="0.3"/></svg><span>Emergency</span></a>
+        <a href="#" class="nav-item"><svg width="20" height="20" viewBox="0 0 20 20"><polygon points="10,2 12,7 18,7 13,11 15,17 10,13 5,17 7,11 2,7 8,7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg><span>Rewards</span></a>
+        <a href="#" class="nav-item"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="6" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M3 18C3 13.58 6.14 10 10 10C13.86 10 17 13.58 17 18" stroke="currentColor" stroke-width="1.5" fill="none"/></svg><span>Profile</span></a>
+      </nav>
+    </div>
+
+    <!-- ==================== HOSPITAL SIGN UP ==================== -->
+    <div id="screen-hospital-signup" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.goTo('role')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="auth-form">
+        <h2>Create your account</h2>
+        <p>Create your hospital account to request and track blood in real time.</p>
+        <div class="form-group">
+          <label>Hospital Name</label>
+          <input type="text" placeholder="Enter hospital name">
+        </div>
+        <div class="form-group">
+          <label>Hospital Email</label>
+          <input type="email" placeholder="Enter hospital email">
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="Enter phone number">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="Create a password">
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input type="password" placeholder="Confirm your password">
+        </div>
+        <label class="checkbox-label">
+          <input type="checkbox"> <span>I Agree To The Clinical Terms Of Service And Privacy Protocol.</span>
+        </label>
+        <button class="btn btn-primary" onclick="App.signUp('hospital')">Sign Up</button>
+        <div class="divider"><span>Or Continue With</span></div>
+        <button class="btn btn-social"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="#C00000" fill-opacity="0.1"/><text x="10" y="14" text-anchor="middle" fill="#C00000" font-size="11" font-weight="bold">G</text></svg> Continue with Google</button>
+        <p class="auth-switch">Already Have An Account? <a href="#" onclick="App.goTo('hospital-login')">Log In</a></p>
+      </div>
+    </div>
+
+    <!-- ==================== HOSPITAL LOGIN ==================== -->
+    <div id="screen-hospital-login" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.goTo('role')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="auth-form">
+        <h2>Hospital Login</h2>
+        <p>Access your hospital emergency blood coordination dashboard.</p>
+        <div class="form-group">
+          <label>Hospital Email</label>
+          <input type="email" placeholder="Enter hospital email">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="Enter password">
+        </div>
+        <a href="#" class="forgot-link" onclick="App.goTo('forgot-password')">Forgot Password?</a>
+        <button class="btn btn-primary" onclick="App.login('hospital')">Sign In</button>
+        <button class="btn btn-social"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" fill="#C00000" fill-opacity="0.1"/><text x="10" y="14" text-anchor="middle" fill="#C00000" font-size="11" font-weight="bold">G</text></svg> Continue with Google</button>
+        <p class="auth-switch">Don't Have An Account? <a href="#" onclick="App.goTo('hospital-signup')">Create Account</a></p>
+      </div>
+    </div>
+
+    <!-- ==================== HOSPITAL EMERGENCY DASHBOARD ==================== -->
+    <div id="screen-hospital-dashboard" class="screen">
+      <div class="dashboard">
+        <div class="dash-header">
+          <div>
+            <h2>Welcome, Dr. Li</h2>
+            <p class="hospital-name">CENTRAL GENERAL HOSPITAL</p>
+          </div>
+          <div class="dash-avatar">DL</div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi-card"><strong>4</strong><span>Requests</span><small>+2.4%</small></div>
+          <div class="kpi-card"><strong>12</strong><span>Being Matched</span></div>
+          <div class="kpi-card"><strong>08</strong><span>Active Del.<br><small>AI Opt., ETA: 14m</small></span></div>
+        </div>
+        <div class="section">
+          <h3>Active Blood Inventory</h3>
+          <div class="inventory-mini">
+            <div class="inv-item"><span class="inv-type">O+</span><span class="inv-count">24 units</span></div>
+            <div class="inv-item"><span class="inv-type">O-</span><span class="inv-count critical">2 units</span></div>
+            <div class="inv-item"><span class="inv-type">A+</span><span class="inv-count">18 units</span></div>
+          </div>
+          <a href="#" class="show-more">View Full Stock</a>
+        </div>
+        <div class="section">
+          <h3>Active Requests</h3>
+          <div class="request-card">
+            <div class="req-header"><strong>REQ-9012</strong> — Trauma C</div>
+            <div class="req-detail">4 Units O- Negative</div>
+            <span class="req-status in-transit">IN TRANSIT</span>
+            <span class="req-eta">ETA 4m</span>
+          </div>
+          <div class="request-card">
+            <div class="req-header"><strong>REQ-9015</strong> — Surgery 4</div>
+            <div class="req-detail">2 Units B+ Positive</div>
+            <span class="req-status matching">MATCHING</span>
+            <span class="req-eta">AI Processing</span>
+          </div>
+          <button class="btn btn-primary" onclick="App.goTo('hospital-request')">Manage Requests</button>
+        </div>
+      </div>
+      <button class="chat-fab" onclick="App.showToast('Chat Bot: How can I help you?')">
+        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" fill="white" opacity="0.9"/><path d="M8 9H16M8 13H13M8 17H11" stroke="#C00000" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <nav class="bottom-nav">
+        <a href="#" class="nav-item active"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 10L10 2L18 10" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="4" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/><rect x="12" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/></svg><span>Dashboard</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('bloodbank-inventory')"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M7 8H13M7 12H11" stroke="currentColor" stroke-width="1.5"/></svg><span>Inventory</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('hospital-request')"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 6V14M6 10H14" stroke="currentColor" stroke-width="1.5"/></svg><span>Request</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('hospital-settings')"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 2V5M10 15V18M2 10H5M15 10H18M4.93 4.93L7.07 7.07M12.93 12.93L15.07 15.07M4.93 15.07L7.07 12.93M12.93 7.07L15.07 4.93" stroke="currentColor" stroke-width="1.5"/></svg><span>Profile</span></a>
+      </nav>
+    </div>
+
+    <!-- ==================== HOSPITAL EMERGENCY REQUEST ==================== -->
+    <div id="screen-hospital-request" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.goTo('hospital-dashboard')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <h2>Emergency Request</h2>
+      </div>
+      <div class="auth-form">
+        <div class="ai-banner">
+          <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#C00000" fill-opacity="0.2"/><path d="M8 4V8L10 10" stroke="#C00000" stroke-width="1.2"/></svg>
+          AI Matching Engine Active — Indexing 12 regional blood banks.
+        </div>
+        <div class="form-group">
+          <label>Blood Group <span class="required">*</span></label>
+          <select>
+            <option>-- Select Type --</option>
+            <option>O+</option><option>O-</option><option>A+</option><option>A-</option>
+            <option>B+</option><option>B-</option><option>AB+</option><option>AB-</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Department/Ward <span class="required">*</span></label>
+          <select><option>-- Select Ward --</option><option>Emergency</option><option>Surgery</option><option>Trauma</option><option>ICU</option></select>
+        </div>
+        <div class="form-group">
+          <label>Units Required</label>
+          <input type="number" placeholder="Enter number of units" value="1" min="1">
+        </div>
+        <div class="form-group">
+          <label>Clinical Priority Level</label>
+          <div class="priority-toggles">
+            <span class="priority-btn" data-priority="routine" onclick="App.selectPriority(this)">ROUTINE</span>
+            <span class="priority-btn" data-priority="urgent" onclick="App.selectPriority(this)">URGENT</span>
+            <span class="priority-btn active critical-priority" data-priority="critical" onclick="App.selectPriority(this)">CRITICAL</span>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="App.submitEmergencyRequest()">Submit Emergency Request</button>
+        <div class="low-stock-warning">
+          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="#C00000" fill-opacity="0.2"/><path d="M7 4V7M7 9V9.01" stroke="#C00000" stroke-width="1.2"/></svg>
+          CRITICAL Low Stock — Central Hub: 2 units Inventory
+        </div>
+      </div>
+      <nav class="bottom-nav">
+        <a href="#" class="nav-item" onclick="App.goTo('hospital-dashboard')"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 10L10 2L18 10" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="4" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/><rect x="12" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/></svg><span>Dashboard</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('bloodbank-inventory')"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M7 8H13M7 12H11" stroke="currentColor" stroke-width="1.5"/></svg><span>Inventory</span></a>
+        <a href="#" class="nav-item active"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 6V14M6 10H14" stroke="currentColor" stroke-width="1.5"/></svg><span>Request</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('hospital-settings')"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 2V5M10 15V18M2 10H5M15 10H18M4.93 4.93L7.07 7.07M12.93 12.93L15.07 15.07M4.93 15.07L7.07 12.93M12.93 7.07L15.07 4.93" stroke="currentColor" stroke-width="1.5"/></svg><span>Profile</span></a>
+      </nav>
+    </div>
+
+    <!-- ==================== AI MATCH TRACKING ==================== -->
+    <div id="screen-match-tracking" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.goTo('hospital-dashboard')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <h2>Match Request #BR-9021</h2>
+      </div>
+      <div class="dashboard">
+        <div class="progress-steps">
+          <div class="step completed"><div class="step-dot"></div><span>Submitted</span><small>08:45 AM</small></div>
+          <div class="step completed"><div class="step-dot"></div><span>Checked</span><small>08:52 AM</small></div>
+          <div class="step active"><div class="step-dot"></div><span>Matched</span><small>In Progress</small></div>
+          <div class="step"><div class="step-dot"></div><span>Confirmation</span><small>Pending</small></div>
+        </div>
+        <div class="match-summary">
+          <div class="match-blood">O-</div>
+          <div class="match-details">
+            <div class="match-stat"><strong>14</strong> Units In Network</div>
+            <div class="match-stat"><strong>06</strong> Active Ready</div>
+          </div>
+        </div>
+        <div class="ai-log-box">
+          <p><strong>Neural network scan complete.</strong> Cross-referencing 14 regional blood banks within a 50km radius...</p>
+        </div>
+        <div class="match-actions">
+          <button class="btn btn-secondary">Refresh Status</button>
+          <button class="btn btn-primary">Contact Blood Bank</button>
+        </div>
+        <div class="eta-box">
+          <strong>Estimated Arrival:</strong> 18 min — 09:58 AM from SJC-4
+        </div>
+        <div class="live-log">
+          <h3>Live Log</h3>
+          <div class="log-entry">
+            <span class="log-time">09:05:22</span>
+            <p>Matching Confirmed — Units secured at Saint Jude Central. Courier assigned.</p>
+          </div>
+          <div class="log-entry">
+            <span class="log-time">09:02:15</span>
+            <p>Lab Review Finished — Serological crossmatch protocol completed by AI validation.</p>
+          </div>
+          <div class="log-entry">
+            <span class="log-time">08:45:00</span>
+            <p>Request Logged — Emergency match request received by regional grid.</p>
+          </div>
+        </div>
+      </div>
+      <button class="chat-fab" onclick="App.showToast('Chat Bot: How can I help you?')">
+        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" fill="white" opacity="0.9"/><path d="M8 9H16M8 13H13M8 17H11" stroke="#C00000" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <nav class="bottom-nav">
+        <a href="#" class="nav-item" onclick="App.goTo('hospital-dashboard')"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 10L10 2L18 10" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="4" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/><rect x="12" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/></svg><span>Dashboard</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('bloodbank-inventory')"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M7 8H13M7 12H11" stroke="currentColor" stroke-width="1.5"/></svg><span>Inventory</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('hospital-request')"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 6V14M6 10H14" stroke="currentColor" stroke-width="1.5"/></svg><span>Request</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('hospital-settings')"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 2V5M10 15V18M2 10H5M15 10H18M4.93 4.93L7.07 7.07M12.93 12.93L15.07 15.07M4.93 15.07L7.07 12.93M12.93 7.07L15.07 4.93" stroke="currentColor" stroke-width="1.5"/></svg><span>Profile</span></a>
+      </nav>
+    </div>
+
+    <!-- ==================== BLOOD BANK DASHBOARD ==================== -->
+    <div id="screen-bloodbank-dashboard" class="screen">
+      <div class="dashboard">
+        <div class="dash-header">
+          <div>
+            <p class="greeting">Good Morning,</p>
+            <h2>LifeC. Blood Bank</h2>
+          </div>
+          <div class="dash-avatar">LB</div>
+        </div>
+        <div class="bb-kpis">
+          <div class="bb-kpi"><strong>1,246</strong><span>Total Units</span></div>
+          <div class="bb-kpi"><strong>12</strong><span>Pending</span><small>Need Response</small></div>
+          <div class="bb-kpi"><strong>5</strong><span>Low Stock</span><small>Need Attention</small></div>
+          <div class="bb-kpi"><strong>8</strong><span>Today's</span><small>Completed</small></div>
+        </div>
+        <div class="section">
+          <h3>Recent Requests</h3>
+          <div class="bb-request">
+            <div class="req-header"><strong>REQ-1234</strong> O+ 4 Units</div>
+            <span class="req-status matching">Matching</span>
+            <span class="req-hospital">City Hospital</span>
+            <span class="req-urgency urgent">Urgent</span>
+            <span class="req-time">Today, 09:00 AM</span>
+          </div>
+          <div class="bb-request">
+            <div class="req-header"><strong>REQ-1233</strong> A+ 2 Units</div>
+            <span class="req-status reserved">Reserved</span>
+            <span class="req-hospital">Survive Hospital</span>
+            <span class="req-urgency">Routine</span>
+            <span class="req-time">Today, 07:00 AM</span>
+          </div>
+          <div class="bb-request">
+            <div class="req-header"><strong>REQ-1232</strong> B+ 3 Units</div>
+            <span class="req-status complete">Complete</span>
+            <span class="req-hospital">Metro Hospital</span>
+            <span class="req-urgency urgent">Urgent</span>
+            <span class="req-time">Yesterday, 10:00 AM</span>
+          </div>
+        </div>
+      </div>
+      <button class="chat-fab" onclick="App.showToast('Chat Bot: How can I help you?')">
+        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" fill="white" opacity="0.9"/><path d="M8 9H16M8 13H13M8 17H11" stroke="#C00000" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <nav class="bottom-nav">
+        <a href="#" class="nav-item active"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 10L10 2L18 10" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="4" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/><rect x="12" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/></svg><span>Dashboard</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('bloodbank-inventory')"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M7 8H13M7 12H11" stroke="currentColor" stroke-width="1.5"/></svg><span>Inventory</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('hospital-request')"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 6V14M6 10H14" stroke="currentColor" stroke-width="1.5"/></svg><span>Request</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('hospital-settings')"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 2V5M10 15V18M2 10H5M15 10H18M4.93 4.93L7.07 7.07M12.93 12.93L15.07 15.07M4.93 15.07L7.07 12.93M12.93 7.07L15.07 4.93" stroke="currentColor" stroke-width="1.5"/></svg><span>Profile</span></a>
+      </nav>
+    </div>
+
+    <!-- ==================== BLOOD BANK INVENTORY ==================== -->
+    <div id="screen-bloodbank-inventory" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.goTo('bloodbank-dashboard')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <h2>Inventory Management</h2>
+      </div>
+      <div class="appointment-content">
+        <div class="search-bar">
+          <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="7" cy="7" r="5" stroke="#999" stroke-width="1.5" fill="none"/><path d="M11 11L14 14" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="Search blood group">
+        </div>
+        <div class="inventory-list">
+          <div class="inv-row"><span class="inv-blood">O+</span><span class="inv-units">320 Units</span><span class="inv-status adequate">Adequate</span></div>
+          <div class="inv-row"><span class="inv-blood">O-</span><span class="inv-units">48 Units</span><span class="inv-status low">Low</span></div>
+          <div class="inv-row"><span class="inv-blood">A+</span><span class="inv-units">210 Units</span><span class="inv-status adequate">Adequate</span></div>
+          <div class="inv-row"><span class="inv-blood">A-</span><span class="inv-units">35 Units</span><span class="inv-status critical">Critical</span></div>
+          <div class="inv-row"><span class="inv-blood">B+</span><span class="inv-units">180 Units</span><span class="inv-status adequate">Adequate</span></div>
+          <div class="inv-row"><span class="inv-blood">B-</span><span class="inv-units">28 Units</span><span class="inv-status low">Low</span></div>
+          <div class="inv-row"><span class="inv-blood">AB+</span><span class="inv-units">95 Units</span><span class="inv-status adequate">Adequate</span></div>
+          <div class="inv-row"><span class="inv-blood">AB-</span><span class="inv-units">30 Units</span><span class="inv-status low">Low</span></div>
+        </div>
+      </div>
+      <button class="chat-fab" onclick="App.showToast('Chat Bot: How can I help you?')">
+        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" fill="white" opacity="0.9"/><path d="M8 9H16M8 13H13M8 17H11" stroke="#C00000" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <nav class="bottom-nav">
+        <a href="#" class="nav-item" onclick="App.goTo('bloodbank-dashboard')"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 10L10 2L18 10" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="4" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/><rect x="12" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/></svg><span>Dashboard</span></a>
+        <a href="#" class="nav-item active"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M7 8H13M7 12H11" stroke="currentColor" stroke-width="1.5"/></svg><span>Inventory</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('hospital-request')"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 6V14M6 10H14" stroke="currentColor" stroke-width="1.5"/></svg><span>Request</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('hospital-settings')"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 2V5M10 15V18M2 10H5M15 10H18M4.93 4.93L7.07 7.07M12.93 12.93L15.07 15.07M4.93 15.07L7.07 12.93M12.93 7.07L15.07 4.93" stroke="currentColor" stroke-width="1.5"/></svg><span>Profile</span></a>
+      </nav>
+    </div>
+
+    <!-- ==================== HOSPITAL SETTINGS / PROFILE ==================== -->
+    <div id="screen-hospital-settings" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.goTo('hospital-dashboard')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <h2>Settings</h2>
+      </div>
+      <div class="dashboard">
+        <div class="hospital-profile-header">
+          <h2>Central General Hospital</h2>
+          <small>ID: MTC-99283-X</small>
+        </div>
+        <div class="section">
+          <h3>Contact Information</h3>
+          <div class="info-row"><span>Email:</span> admin@citycentral.hospital</div>
+          <div class="info-row"><span>Emergency:</span> 9-1-1-EXT-04</div>
+          <div class="info-row"><span>Address:</span> 9700 S. Michigan Ave, South Africa</div>
+        </div>
+        <div class="section">
+          <h3>Facility Details</h3>
+          <div class="info-row"><span>Type:</span> Public</div>
+          <div class="info-row"><span>Hours:</span> 24/7</div>
+          <div class="info-row"><span>ER Dept.:</span> Active</div>
+        </div>
+        <div class="section">
+          <h3>Emergency Preferences</h3>
+          <div class="toggle-row"><span>Emergency Notifications</span><label class="toggle"><input type="checkbox" checked><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>AI Donor Matching</span><label class="toggle"><input type="checkbox" checked><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Low Inventory Alerts</span><label class="toggle"><input type="checkbox" checked><span class="slider"></span></label></div>
+          <div class="toggle-row"><span>Push Notifications</span><label class="toggle"><input type="checkbox" checked><span class="slider"></span></label></div>
+        </div>
+        <button class="btn btn-secondary">Download Compliance Certificate</button>
+        <button class="btn btn-secondary">Manage Staff</button>
+        <button class="btn btn-secondary">Edit Info</button>
+        <div class="settings-footer">
+          <a href="#">Privacy</a> · <a href="#">Help Desk</a> · <a href="#">About MedBridge AI</a>
+        </div>
+        <button class="btn btn-danger" onclick="App.logout()">Log Out &gt;</button>
+        <p class="version">4.2.1-stable — (c) 2024 MedBridge</p>
+      </div>
+      <nav class="bottom-nav">
+        <a href="#" class="nav-item" onclick="App.goTo('hospital-dashboard')"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 10L10 2L18 10" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="4" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/><rect x="12" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/></svg><span>Dashboard</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('bloodbank-inventory')"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M7 8H13M7 12H11" stroke="currentColor" stroke-width="1.5"/></svg><span>Inventory</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('hospital-request')"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 6V14M6 10H14" stroke="currentColor" stroke-width="1.5"/></svg><span>Request</span></a>
+        <a href="#" class="nav-item active"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 2V5M10 15V18M2 10H5M15 10H18M4.93 4.93L7.07 7.07M12.93 12.93L15.07 15.07M4.93 15.07L7.07 12.93M12.93 7.07L15.07 4.93" stroke="currentColor" stroke-width="1.5"/></svg><span>Profile</span></a>
+      </nav>
+    </div>
+
+    <!-- ==================== HOSPITAL NOTIFICATIONS ==================== -->
+    <div id="screen-hospital-notifications" class="screen">
+      <div class="screen-header">
+        <h2>Notifications</h2>
+        <a href="#" class="mark-read">Mark all as read</a>
+      </div>
+      <div class="notif-tabs">
+        <span class="notif-tab active">All</span>
+        <span class="notif-tab">CRITICAL</span>
+        <span class="notif-tab">NEARBY</span>
+        <span class="notif-tab">ACTION</span>
+        <span class="notif-tab">UPDATES</span>
+      </div>
+      <div class="notif-list">
+        <div class="notif-card action">
+          <div class="notif-time">2 mins ago</div>
+          <div class="notif-badge critical">IMMEDIATE ACTION</div>
+          <h4>Low O- Stock Level</h4>
+          <p>Blood bank inventory for O-Negative has dropped below critical threshold (2 units remaining). Immediate replenishment request required for Central Hospital.</p>
+          <div class="notif-actions">
+            <button class="btn btn-primary btn-sm">Initiate</button>
+            <button class="btn btn-secondary btn-sm">Dismiss</button>
+          </div>
+        </div>
+        <div class="notif-card action">
+          <div class="notif-time">2 mins ago</div>
+          <div class="notif-badge critical">IMMEDIATE ACTION</div>
+          <h4>Low A- Stock Level</h4>
+          <p>Blood bank inventory for A-Negative has dropped below critical threshold (3 units remaining)...</p>
+          <div class="notif-actions">
+            <button class="btn btn-primary btn-sm">Initiate</button>
+            <button class="btn btn-secondary btn-sm">Dismiss</button>
+          </div>
+        </div>
+      </div>
+      <button class="chat-fab" onclick="App.showToast('Chat Bot: How can I help you?')">
+        <svg width="24" height="24" viewBox="0 0 24 24"><path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" fill="white" opacity="0.9"/><path d="M8 9H16M8 13H13M8 17H11" stroke="#C00000" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <nav class="bottom-nav">
+        <a href="#" class="nav-item active"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 2C7.24 2 5 4.24 5 7V11L3 14H17L15 11V7C15 4.24 12.76 2 10 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="10" cy="17" r="2" fill="currentColor" opacity="0.3"/></svg><span>Alerts</span></a>
+        <a href="#" class="nav-item"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 2C7.24 2 5 4.24 5 7V11L3 14H17L15 11V7C15 4.24 12.76 2 10 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="10" cy="17" r="2" fill="currentColor" opacity="0.3"/></svg><span>Emergency</span></a>
+        <a href="#" class="nav-item"><svg width="20" height="20" viewBox="0 0 20 20"><polygon points="10,2 12,7 18,7 13,11 15,17 10,13 5,17 7,11 2,7 8,7" stroke="currentColor" stroke-width="1.5" fill="none"/></svg><span>Rewards</span></a>
+        <a href="#" class="nav-item"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="6" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M3 18C3 13.58 6.14 10 10 10C13.86 10 17 13.58 17 18" stroke="currentColor" stroke-width="1.5" fill="none"/></svg><span>Profile</span></a>
+      </nav>
+    </div>
+
+    <!-- ==================== DONATION VERIFICATION ==================== -->
+    <div id="screen-donation-verification" class="screen">
+      <div class="screen-header">
+        <button class="btn-back" onclick="App.goTo('bloodbank-dashboard')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <h2>Donation Verification</h2>
+      </div>
+      <div class="dashboard">
+        <div class="donor-badge">
+          <div class="donor-avatar">RA</div>
+          <div class="donor-info">
+            <h3>Ruby Ada</h3>
+            <p>DON-547 · O+ · 29 Years · Female</p>
+          </div>
+        </div>
+        <div class="section">
+          <h3>Donation Details</h3>
+          <div class="detail-row"><span>Donation ID:</span> DON-5477</div>
+          <div class="detail-row"><span>Date & Time:</span> 12 June 2021, 11:20 AM</div>
+          <div class="detail-row"><span>Blood Group:</span> O+</div>
+          <div class="detail-row"><span>Units:</span> 1 Unit (450ml)</div>
+          <div class="detail-row"><span>Donor Type:</span> Voluntary</div>
+        </div>
+        <div class="section">
+          <h3>Screening Results</h3>
+          <table class="screening-table">
+            <tr><td>Hemoglobin</td><td>13.8g/dl</td><td class="pass">PASS</td></tr>
+            <tr><td>Blood Pressure</td><td>120/80 mmHg</td><td class="pass">PASS</td></tr>
+            <tr><td>Temperature</td><td>37C</td><td class="pass">PASS</td></tr>
+            <tr><td>Viral Markers</td><td>Non-Reactive</td><td class="pass">PASS</td></tr>
+          </table>
+        </div>
+        <button class="btn btn-danger" onclick="App.showToast('Donation rejected.')">Reject Donation</button>
+      </div>
+      <nav class="bottom-nav">
+        <a href="#" class="nav-item" onclick="App.goTo('bloodbank-dashboard')"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 10L10 2L18 10" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="4" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/><rect x="12" y="10" width="4" height="8" fill="currentColor" opacity="0.3"/></svg><span>Dashboard</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('bloodbank-inventory')"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M7 8H13M7 12H11" stroke="currentColor" stroke-width="1.5"/></svg><span>Inventory</span></a>
+        <a href="#" class="nav-item" onclick="App.goTo('hospital-request')"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 6V14M6 10H14" stroke="currentColor" stroke-width="1.5"/></svg><span>Request</span></a>
+        <a href="#" class="nav-item"><svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 2V5M10 15V18M2 10H5M15 10H18M4.93 4.93L7.07 7.07M12.93 12.93L15.07 15.07M4.93 15.07L7.07 12.93M12.93 7.07L15.07 4.93" stroke="currentColor" stroke-width="1.5"/></svg><span>Profile</span></a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
